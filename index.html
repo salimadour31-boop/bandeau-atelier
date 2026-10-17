@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bandeau Atelier — lower thirds / name supers / bandeaux d’info</title>
+  <meta name="description" content="Générateur gratuit de bandeaux (lower thirds) pour vidéastes et YouTubers : nom, rôle, lieu, logo local ; 4 dispositions, 6 thèmes, animation entrée/sortie, export PNG/SVG/WebM/JSON. FR / EN / Taqbaylit.">
+  <meta name="theme-color" content="#0a0a0e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0e'/%3E%3Crect x='4' y='20' width='24' height='7' rx='2' fill='%23c9a46a'/%3E%3Crect x='4' y='20' width='3' height='7' rx='1' fill='%23e8c48a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;family=Noto+Sans+Arabic:wght@400;600;700&amp;family=Noto+Sans+Tifinagh&amp;family=Josefin+Sans:wght@400;600;700&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#editor" data-i18n="skip">Aller à l’éditeur</a>
+
+  <header class="top">
+    <div class="brand">
+      <!-- Logo original : barre de bandeau stylisée -->
+      <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="1" y="1" width="46" height="46" rx="11" fill="#12121a" stroke="#2c2c38"/>
+        <rect x="7" y="28" width="34" height="11" rx="3" fill="#c9a46a"/>
+        <rect x="7" y="28" width="4" height="11" rx="2" fill="#e8c48a"/>
+        <rect x="14" y="31" width="18" height="2.2" rx="1.1" fill="#1a1208"/>
+        <rect x="14" y="35" width="12" height="1.6" rx=".8" fill="#3a2a14" opacity=".7"/>
+      </svg>
+      <div>
+        <h1 data-i18n="appTitle">Bandeau Atelier</h1>
+        <p class="tagline" data-i18n="tagline">Lower thirds et bandeaux d’info pour vos vidéos — dans le navigateur</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <label class="lang"><span data-i18n="language">Langue</span>
+        <select id="lang" aria-label="Language"></select>
+      </label>
+      <button id="helpBtn" class="btn ghost" type="button" aria-haspopup="dialog"><span aria-hidden="true">?</span> <span data-i18n="help">Aide</span></button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- ===== Colonne gauche : contenu ===== -->
+    <section class="col col-left" id="editor" tabindex="-1" aria-labelledby="hContent">
+      <section class="panel" aria-labelledby="hContent">
+        <h2 id="hContent" data-i18n="hContent">Contenu</h2>
+        <label class="field"><span data-i18n="lblPrimary">Ligne principale (nom)</span>
+          <input type="text" id="fPrimary" dir="auto" maxlength="120" autocomplete="off" value="Amina Belkacem">
+        </label>
+        <label class="field"><span data-i18n="lblSecondary">Ligne secondaire (rôle)</span>
+          <input type="text" id="fSecondary" dir="auto" maxlength="160" autocomplete="off" value="Réalisatrice">
+        </label>
+        <label class="field"><span data-i18n="lblTertiary">Ligne tertiaire (lieu / date)</span>
+          <input type="text" id="fTertiary" dir="auto" maxlength="160" autocomplete="off" value="Alger · 2026">
+        </label>
+        <div class="row logo-row">
+          <label class="btn ghost file"><input id="logoFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml"><span aria-hidden="true">🖼</span> <span data-i18n="logo">Logo (fichier local)</span></label>
+          <img id="logoThumb" class="logo-thumb" alt="" hidden>
+          <button id="logoRemove" class="btn ghost small" type="button" data-i18n="removeLogo" hidden>Retirer</button>
+        </div>
+        <p class="muted small" data-i18n="logoHint">Le logo reste sur votre appareil — jamais envoyé.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="hLayout">
+        <h2 id="hLayout" data-i18n="hLayout">Disposition</h2>
+        <div class="seg seg4" id="layoutSeg" role="radiogroup" aria-labelledby="hLayout">
+          <label><input type="radio" name="layout" value="bar" checked><span data-i18n="layoutBar">Barre gauche</span></label>
+          <label><input type="radio" name="layout" value="glass"><span data-i18n="layoutGlass">Bandeau verre</span></label>
+          <label><input type="radio" name="layout" value="badge"><span data-i18n="layoutBadge">Badge coin</span></label>
+          <label><input type="radio" name="layout" value="split"><span data-i18n="layoutSplit">Plaque bipolaire</span></label>
+        </div>
+        <label class="field"><span data-i18n="lblPosition">Position verticale</span>
+          <select id="fPosition">
+            <option value="bottom" data-i18n="posBottom">Bas</option>
+            <option value="lower" data-i18n="posLower">Bas-milieu</option>
+            <option value="top" data-i18n="posTop">Haut</option>
+          </select>
+        </label>
+        <label class="field"><span data-i18n="lblSide">Côté</span>
+          <select id="fSide">
+            <option value="left" data-i18n="sideLeft">Gauche</option>
+            <option value="right" data-i18n="sideRight">Droite</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="panel" aria-labelledby="hTheme">
+        <h2 id="hTheme" data-i18n="hTheme">Thème</h2>
+        <div class="theme-grid" id="themeGrid"></div>
+        <label class="field" style="margin-top:10px"><span data-i18n="lblFont">Police</span>
+          <select id="fFont">
+            <option value="Inter">Inter</option>
+            <option value="Source Sans 3">Source Sans 3</option>
+            <option value="Josefin Sans">Josefin Sans</option>
+            <option value="Noto Sans Arabic">Noto Sans Arabic</option>
+            <option value="Noto Sans Tifinagh">Noto Sans Tifinagh</option>
+            <option value="system-ui">System UI</option>
+          </select>
+        </label>
+      </section>
+    </section>
+
+    <!-- ===== Centre : aperçu ===== -->
+    <section class="col col-center" aria-labelledby="hPreview">
+      <section class="panel preview-panel">
+        <div class="panel-head">
+          <h2 id="hPreview" data-i18n="hPreview">Aperçu</h2>
+          <div class="row" style="margin:0">
+            <label class="check"><input type="checkbox" id="fSafe" checked> <span data-i18n="safeGuides">Marges sûres</span></label>
+          </div>
+        </div>
+        <div class="screen" id="screen">
+          <canvas id="preview" width="1280" height="720" aria-label="Lower third preview"></canvas>
+        </div>
+        <div class="preview-bar">
+          <button id="btnPlay" class="btn accent" type="button"><span aria-hidden="true">▶</span> <span data-i18n="play">Lire</span></button>
+          <button id="btnLoop" class="btn ghost" type="button" aria-pressed="false"><span data-i18n="loop">Boucle</span></button>
+          <button id="btnHold" class="btn ghost" type="button"><span data-i18n="holdPose">Pose tenue</span></button>
+          <span id="animStatus" class="muted small" aria-live="polite"></span>
+        </div>
+        <div class="sliders" style="margin-top:10px">
+          <div class="slider"><label data-i18n="durIn">Entrée (s)</label><output id="outIn">0.6</output>
+            <input type="range" id="fDurIn" min="0.1" max="2" step="0.05" value="0.6"></div>
+          <div class="slider"><label data-i18n="durHold">Tenue (s)</label><output id="outHold">2.5</output>
+            <input type="range" id="fDurHold" min="0.5" max="8" step="0.1" value="2.5"></div>
+          <div class="slider"><label data-i18n="durOut">Sortie (s)</label><output id="outOut">0.5</output>
+            <input type="range" id="fDurOut" min="0.1" max="2" step="0.05" value="0.5"></div>
+        </div>
+        <label class="field" style="margin-top:8px"><span data-i18n="lblAnim">Animation</span>
+          <select id="fAnim">
+            <option value="fadeSlide" data-i18n="animFadeSlide">Fondu + glissement</option>
+            <option value="grow" data-i18n="animGrow">Croissance</option>
+            <option value="fade" data-i18n="animFade">Fondu seul</option>
+            <option value="wipe" data-i18n="animWipe">Balayage</option>
+          </select>
+        </label>
+      </section>
+    </section>
+
+    <!-- ===== Droite : format & export ===== -->
+    <section class="col col-right" aria-labelledby="hFormat">
+      <section class="panel" aria-labelledby="hFormat">
+        <h2 id="hFormat" data-i18n="hFormat">Format</h2>
+        <div class="seg seg3" id="ratioSeg" role="radiogroup">
+          <label><input type="radio" name="ratio" value="16:9" checked><span>16:9</span></label>
+          <label><input type="radio" name="ratio" value="9:16"><span>9:16</span></label>
+          <label><input type="radio" name="ratio" value="1:1"><span>1:1</span></label>
+          <label><input type="radio" name="ratio" value="4:5"><span>4:5</span></label>
+          <label><input type="radio" name="ratio" value="2.39:1"><span>2.39:1</span></label>
+        </div>
+        <label class="field"><span data-i18n="lblRes">Résolution (côté long)</span>
+          <select id="fRes">
+            <option value="1080">1080p</option>
+            <option value="2160">4K</option>
+            <option value="720">720p</option>
+          </select>
+        </label>
+        <label class="field"><span data-i18n="lblBg">Fond d’aperçu</span>
+          <select id="fBg">
+            <option value="checker" data-i18n="bgChecker">Damier (transparence)</option>
+            <option value="solid" data-i18n="bgSolid">Uni sombre</option>
+            <option value="green" data-i18n="bgGreen">Vert fond</option>
+            <option value="image" data-i18n="bgImage">Image locale</option>
+          </select>
+        </label>
+        <div class="row" id="bgImageRow" hidden>
+          <label class="btn ghost file"><input id="bgFile" type="file" accept="image/*"><span data-i18n="bgPick">Choisir une image</span></label>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="hExport">
+        <h2 id="hExport" data-i18n="hExport">Export</h2>
+        <button id="btnPng" class="btn accent wide" type="button"><span data-i18n="exportPng">PNG transparent</span></button>
+        <button id="btnSvg" class="btn wide" type="button"><span data-i18n="exportSvg">SVG (pose tenue)</span></button>
+        <button id="btnWebm" class="btn wide" type="button"><span data-i18n="exportWebm">WebM (animation)</span></button>
+        <button id="btnJson" class="btn ghost wide" type="button"><span data-i18n="exportJson">JSON (réglages)</span></button>
+        <label class="btn ghost file wide" style="margin-top:8px"><input id="importJson" type="file" accept="application/json,.json"><span data-i18n="importJson">Importer JSON</span></label>
+        <p id="exportStatus" class="muted small" aria-live="polite" style="margin-top:8px"></p>
+      </section>
+
+      <section class="panel muted small" aria-labelledby="hAbout">
+        <h2 id="hAbout" data-i18n="hAbout">À propos</h2>
+        <p data-i18n="aboutText">Outil libre MIT. Complète Générique Atelier pour les cartons nom/rôle pendant la vidéo. Aucune donnée envoyée.</p>
+        <p><a href="https://github.com/salimadour31-boop/bandeau-atelier" target="_blank" rel="noopener">GitHub</a></p>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="helpDialog">
+    <form method="dialog" class="help-box">
+      <h2 data-i18n="helpTitle">Aide — Bandeau Atelier</h2>
+      <div data-i18n-html="helpBody"></div>
+      <button class="btn accent" value="ok" data-i18n="close">Fermer</button>
+    </form>
+  </dialog>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
